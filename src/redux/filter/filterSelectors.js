@@ -1,0 +1,1 @@
+export const selectfilterContact = state => state.filter;
