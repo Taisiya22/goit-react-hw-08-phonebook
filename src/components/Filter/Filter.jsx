@@ -10,6 +10,7 @@ export const Filter = () => {
   const filter = useSelector(selectfilterContact);
   return (
     <TextField
+      // style={{alignItems: 'center'}}
       id="outlined-basic"
       label="Find contacts by name"
       type="text"

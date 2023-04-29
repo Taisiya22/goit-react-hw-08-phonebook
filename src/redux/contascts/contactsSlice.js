@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './contactsOperations';
 
 const handlePending = state => {
@@ -6,9 +6,22 @@ const handlePending = state => {
   state.error = null;
 };
 
-const handleFullfiled = state => {
+const handleFullfiledFetch = (state, action) => {
+  state.items = action.payload;
   state.isLoading = false;
-  state.error = null; 
+  state.error = null;
+};
+
+const handleFullfiledAdd = (state, action) => {
+  state.items.push(action.payload);
+  state.isLoading = false;
+  state.error = null;
+};
+
+const handleFullfiledDel = (state, action) => {
+  state.items = state.items.filter(contact => contact.id !== action.payload);
+  state.isLoading = false;
+  state.error = null;
 };
 
 const handleRejected = (state, action) => {
@@ -23,29 +36,27 @@ export const contactsSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  extraReducers: {
-    [fetchContacts.pending]: handlePending,
-    [fetchContacts.fulfilled]: (state, action) => {
-      state.items = action.payload;
-      handleFullfiled(state);
-    },
-    [fetchContacts.rejected]: handleRejected,
-
-    [addContact.pending]: handlePending,
-    [addContact.fulfilled]: (state, action) => {
-      state.items.push(action.payload);
-      handleFullfiled(state);
-    },
-    [addContact.rejected]: handleRejected,
-
-    [deleteContact.pending]: handlePending,
-    [deleteContact.fulfilled]: (state, action) => {
-      state.items = state.items.filter(
-        contact => contact.id !== action.payload
+  extraReducers: builder => {
+    builder
+      .addCase(fetchContacts.fulfilled, handleFullfiledFetch)
+      .addCase(addContact.fulfilled, handleFullfiledAdd)
+      .addCase(deleteContact.fulfilled, handleFullfiledDel)
+      .addMatcher(
+        isAnyOf(
+          fetchContacts.pending,
+          addContact.pending,
+          deleteContact.pending
+        ),
+        handlePending
+      )
+      .addMatcher(
+        isAnyOf(
+          fetchContacts.rejected,
+          addContact.rejected,
+          deleteContact.rejected
+        ),
+        handleRejected
       );
-      handleFullfiled(state);
-    },
-    [deleteContact.rejected]: handleRejected,
   },
 });
 

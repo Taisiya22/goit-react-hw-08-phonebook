@@ -7,9 +7,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-image: url('utils/book.png');
+background-position: bottom, right;
+  background-size: contain;
+  background-repeat: no-repeat; */
+    
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.active{
+  color: red;
 }

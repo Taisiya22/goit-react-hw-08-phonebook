@@ -1,25 +1,31 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button } from '@mui/material';
 
 import { deleteContact } from 'redux/contascts/contactsOperations';
 import { selectAllContact } from 'redux/contascts/contactsSelectors';
-// import css from './ContactList.module.css';
+import css from './ContactList.module.css';
 
 export const ContactList = () => {
   const contacts = useSelector(selectAllContact);
   const dispatch = useDispatch();
 
   return (
-    <ul>
+    <ul className={css.list}>
       {contacts.map(({ id, name, number }) => (
-        <li key={id}>
+        <li key={id} className={css.item }>
           {name}: {number}
-          <button
+          <Button
+            variant="contained"
             onClick={() => dispatch(deleteContact(id))}
             type="button"
+            size="small"
           >
             Delete
-          </button>
+          </Button>
+          {/* <button onClick={() => dispatch(deleteContact(id))} type="button">
+            Delete
+          </button> */}
         </li>
       ))}
     </ul>
