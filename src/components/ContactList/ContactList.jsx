@@ -13,8 +13,11 @@ export const ContactList = () => {
   return (
     <ul className={css.list}>
       {contacts.map(({ id, name, number }) => (
-        <li key={id} className={css.item }>
-          {name}: {number}
+        <li key={id} className={css.item}>
+          {name}
+          <li key={id} className={css.item}>
+            {number}
+          </li>
           <Button
             variant="contained"
             onClick={() => dispatch(deleteContact(id))}
@@ -23,9 +26,6 @@ export const ContactList = () => {
           >
             Delete
           </Button>
-          {/* <button onClick={() => dispatch(deleteContact(id))} type="button">
-            Delete
-          </button> */}
         </li>
       ))}
     </ul>

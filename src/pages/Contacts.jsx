@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { Helmet } from 'react-helmet';
+
 import { selectContact, selectIsLoading, selectErorr } from "redux/contascts/contactsSelectors";
 import { fetchContacts } from "redux/contascts/contactsOperations";
 import { Section } from "components/Section/Section";
@@ -7,7 +9,7 @@ import { ContactForm } from "components/ContactForm/ContactForm";
 import { Filter } from "components/Filter/Filter";
 import { ContactList } from "components/ContactList/ContactList";
 import { Loader } from "components/Loader/Loader";
-import { Helmet } from "react-helmet";
+
 
 export default function Contacts () {
   const contacts = useSelector(selectContact);

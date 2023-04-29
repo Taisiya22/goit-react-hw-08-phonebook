@@ -10,7 +10,6 @@ export const Filter = () => {
   const filter = useSelector(selectfilterContact);
   return (
     <TextField
-      // style={{alignItems: 'center'}}
       id="outlined-basic"
       label="Find contacts by name"
       type="text"
@@ -19,15 +18,6 @@ export const Filter = () => {
       onChange={e => dispatch(contactsFilter(e.target.value.toLowerCase()))}
       size="small"
     />
-    // <label >
-    //   <p >Find contacts by name</p>
-    //   <input
-    //     type="text"
-    //     name="filter"
-    //     value={filter}
-    //     onChange={e => dispatch(contactsFilter(e.target.value.toLowerCase()))}
-    //   />
-    // </label>
   );
 };
 

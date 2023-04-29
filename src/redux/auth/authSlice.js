@@ -1,4 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+
 import { register, logIn, logOut, refreshUser } from './authOperations';
 
 const initialState = {
@@ -46,4 +47,3 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
-

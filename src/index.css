@@ -7,11 +7,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-image: url('utils/book.png');
-background-position: bottom, right;
-  background-size: contain;
-  background-repeat: no-repeat; */
-    
+  background: url('utils/dreams.png') no-repeat;
+    -webkit-background-size: 100%;
+    -o-background-size: 100%;
+    -moz-background-size: 100%;
+    -ms-background-size: 100%;
+    -khtml-background-size: 100%;
+    background-size: 100%;
 }
 
 code {

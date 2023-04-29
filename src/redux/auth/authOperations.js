@@ -4,24 +4,20 @@ import Notiflix from 'notiflix';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
-// Utility to add JWT
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-// Utility to remove JWT
 const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
-
 
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post('/users/signup', credentials);
-      Notiflix.Notify.success('You are successful registration');
-      // After successful registration, add the token to the HTTP header
+      Notiflix.Notify.success('You are successful registration!');
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
@@ -29,15 +25,13 @@ export const register = createAsyncThunk(
     }
   }
 );
-
 
 export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post('/users/login', credentials);
-      Notiflix.Notify.success('You have successfully registered!');
-      // After successful login, add the token to the HTTP headere 
+      Notiflix.Notify.success('You have successfully logined!');
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
@@ -46,33 +40,26 @@ export const logIn = createAsyncThunk(
   }
 );
 
-
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/users/logout');
-     Notiflix.Notify.info('Bye! See you soon!');
-    // After a successful logout, remove the token from the HTTP header
+    Notiflix.Notify.info('Bye! See you soon!');
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
-
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
-    // Reading the token from the state via getState()
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
-      // If there is no token, exit without performing any request
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
-
     try {
-      // If there is a token, add it to the HTTP header and perform the request
       setAuthHeader(persistedToken);
       const res = await axios.get('/users/current');
       return res.data;

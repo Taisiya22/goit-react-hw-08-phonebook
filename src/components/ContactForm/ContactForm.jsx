@@ -41,7 +41,7 @@ export const ContactForm = () => {
     if (contacts.find(contact => contact.number === number)) {
       Notiflix.Notify.warning(`${number} is alredy in contacts`);
     }
-    dispatch(addContact({ name, number}));
+    dispatch(addContact({ name, number }));
     reset();
   };
   const reset = () => {
@@ -49,7 +49,7 @@ export const ContactForm = () => {
     setNumber('');
   };
   return (
-    <form onSubmit={handleSubmit} className={css.form }>
+    <form onSubmit={handleSubmit} className={css.form}>
       <TextField
         id="outlined-basic"
         label="Name"
@@ -63,18 +63,6 @@ export const ContactForm = () => {
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
       />
-      {/* <label htmlFor="name">
-        <p>Name</p>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleChange}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-        />
-      </label> */}
       <TextField
         id="outlined-basic"
         label="Number"
@@ -88,22 +76,9 @@ export const ContactForm = () => {
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
       />
-      {/* <label htmlFor="number">
-        <p>Number</p>
-        <input
-          type="tel"
-          name="number"
-          value={number}
-          onChange={handleChange}
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-        />
-      </label> */}
       <Button variant="contained" type="submit" size="small">
-     Add contact
+        Add contact
       </Button>
-      {/* <button type="submit">Add contact</button> */}
     </form>
   );
 };

@@ -2,24 +2,6 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 // import Notiflix from 'notiflix';
 
-// axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
-
-// export const fetchContacts = async () => {
-//   const { data } = await axios.get('/contacts');
-//   return data;
-// };
-
-// export const addContact = async ({ name, number }) => {
-//   const { data } = await axios.post('/contacts', { name, number });
-//   return data;
-// };
-
-// export const deleteContact = async contactId => {
-//   const { data } = await axios.delete(`/contacts/${contactId}`);
-//   return data;
-// };
-
-
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
   async (_, thunkAPI) => {
@@ -33,7 +15,6 @@ export const fetchContacts = createAsyncThunk(
   }
 );
 
-// POST @ /tasks
 export const addContact = createAsyncThunk(
   'contacts/addContacts',
   async (contact,thunkAPI) => {
@@ -47,7 +28,6 @@ export const addContact = createAsyncThunk(
   }
 );
 
-// DELETE @ /tasks/:id
 export const deleteContact = createAsyncThunk(
   'contacts/deleteContacts',
   async (contactId, thunkAPI) => {

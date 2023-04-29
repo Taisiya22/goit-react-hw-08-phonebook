@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { TextField } from '@mui/material';
 import { Button } from '@mui/material';
+
 import { logIn } from 'redux/auth/authOperations';
 import css from './LoginForm.module.css';
 
@@ -28,27 +29,20 @@ export const LoginForm = () => {
         type="text"
         name="email"
         size="small"
+        required
       />
       <TextField
         id="outlined-basic"
         label="Password"
         variant="outlined"
-        type="text"
+        type="password"
         name="password"
         size="small"
+        required
       />
       <Button variant="contained" type="submit" size="small">
         Log in
       </Button>
-      {/* <label className={css.label}>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label className={css.label}>
-        Password
-        <input type="password" name="password" />
-      </label> */}
-      {/* <button type="submit">Log In</button> */}
     </form>
   );
 };
