@@ -11,7 +11,6 @@ export const RegisterForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
-    
     dispatch(
       register({
         name: form.elements.name.value,
@@ -19,12 +18,9 @@ export const RegisterForm = () => {
         password: form.elements.password.value,
       })
     );
-
-     
     form.reset();
   };
 
- 
 
   return (
     <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
